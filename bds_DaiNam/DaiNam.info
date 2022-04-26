@@ -1,0 +1,56 @@
+name = BĐS ĐẠI NAM
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] =  assets/css/bootstrap.min.css
+stylesheets[all][] =  assets/css/jquery-ui.css
+stylesheets[all][] =  assets/css/bootstrap.min.css
+stylesheets[all][] =  assets/css/animate.min.css
+stylesheets[all][] =  assets/vendor/owlcarousel/owl.carousel.min.css
+stylesheets[all][] =  assets/vendor/owlcarousel/owl.theme.default.min.css
+stylesheets[all][] =  assets/css/swiper-bundle.min.css
+stylesheets[all][] =  assets/css/flaticon/font/flaticon.css
+stylesheets[all][] =  assets/css/nice-select.css
+stylesheets[all][] =  assets/css/animate.min.css
+stylesheets[all][] =  assets/css/magnific-popup.css
+stylesheets[all][] =  assets/css/all.min.css
+stylesheets[all][] =  assets/css/pannellum.css
+stylesheets[all][] =  assets/vendor/noUiSlider/nouislider.min.css
+stylesheets[all][] =  assets/css/style.css
+stylesheets[all][] =  assets/css/custom.css
+
+
+scripts[] = assets/js/jquery-3.6.0.min.js
+scripts[] = assets/js/popper.min.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/wow.min.js
+scripts[] = assets/vendor/owlcarousel/owl.carousel.min.js
+scripts[] = assets/js/swiper-bundle.min.js
+scripts[] = assets/js/jquery.appear.min.js
+scripts[] = assets/js/jquery.magnific-popup.min.js
+scripts[] = assets/js/jquery.nice-select.min.js
+scripts[] = assets/js/parallaxie.js
+scripts[] = assets/js/tween-max.js
+scripts[] = assets/js/appear.min.js
+scripts[] = assets/js/isotope.pkgd.min.js
+scripts[] = assets/js/imagesloaded.pkgd.min.js
+scripts[] = assets/vendor/noUiSlider/nouislider.min.js
+scripts[] = assets/vendor/noUiSlider/wNumb.js
+scripts[] = assets/js/validator.min.js
+scripts[] = assets/js/pannellum.js
+scripts[] = assets/js/jquery.zoom.min.js
+scripts[] = assets/js/main.js
+
+regions[header_top] = Header Top
+regions[main_content_frontend] = Main content Frontend
+regions[footer_menu_widget] = Footer Menu Widget
+regions[copyright_widget] = Copyright Widget
+regions[content] = Nội dung chính
+regions[sidebar_first] = Siderbar First
+regions[col1_footer] = Col 1 footer
+regions[col2_footer] = Col 2 footer
+regions[col3_footer] = Col 3 footer
+regions[col4_footer] = Col 4 footer
+regions[col5_footer] = Col 5 footer
+regions[botttom_footer] = Bottom Footer

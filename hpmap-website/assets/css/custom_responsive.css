@@ -1,0 +1,69 @@
+.error + select + span.select2 .select2-selection {
+  border: 2px solid #ff0000 !important;
+}
+form#san-pham-node-form input.error {
+  border: 2px solid red !important;
+}
+form#views-exposed-form-admin-views-user-system-1 div#edit-mail-wrapper {
+  display: none;
+}
+form#views-exposed-form-admin-views-user-system-1 div#edit-name-wrapper,form#views-exposed-form-admin-views-user-system-1 div#edit-rid-wrapper,form#views-exposed-form-admin-views-user-system-1 div#edit-status-wrapper {
+  flex: 0 0 25%;
+  margin-right: 10px;
+}
+form#views-exposed-form-admin-views-user-system-1 .views-exposed-widgets {
+  display: flex;
+}
+form#views-exposed-form-admin-views-user-system-1 #edit-mail-wrapper {
+  flex: 0 0 0%;
+  display: none;
+}
+form#views-exposed-form-admin-views-user-system-1 .views-exposed-widget {
+  align-self: self-end;
+  margin-bottom: 1px;
+}
+ul.action-links a {
+  background: #143e90;
+  padding: 10px 20px;
+  border-radius: 3px;
+  color: #fff;
+}
+ul.action-links {
+  list-style: none;
+  padding-left: 0px;
+  margin-bottom: 25px;
+}
+form#user-admin-roles .tabledrag-toggle-weight {
+  display: none;
+}
+.border_xanh {
+  border: 1px solid #143e90;
+}
+.m_width {
+  min-width: 75px;
+  display: inline-block;
+  font-weight: 500;
+}
+.hinh_anh_table {
+  max-width: 100px;
+  margin-right: 0px !important;
+}
+.table_center td {
+  vertical-align: middle;
+}
+.table_center td .trang_thai_bang {
+  color: #143e90;
+}
+.table_center td .trang_thai_bang[title="Chờ duyệt"],.table_center td .trang_thai_bang[title="Chờ bán"],.table_center td .trang_thai_bang[title="Chờ xác nhận PT"] {
+  color: #fdb833;
+}
+.table_center td .trang_thai_bang[title="Đã duyệt"],.table_center td .trang_thai_bang[title="Đã bán một phần"] {
+  color: #10b313;
+}
+.table_center td .trang_thai_bang[title="Đã mất"],.table_center td .trang_thai_bang[title="Không duyệt"] {
+  color: #e71d36;
+}
+.table_center thead th {
+  color: #143e90;
+  font-weight: 500;
+}

@@ -1,0 +1,44 @@
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .header-wrap{
+    background: #07a046;
+  }
+  .navbar-light {
+    text-align: left;
+  }
+  .navbar-toggler{
+    top: 50px;
+  }
+  .digitalInfo h1{
+    font-size: 25px;
+  }
+  .title h2.text-title{
+    font-size: 26px;
+  }
+  .about-wrap .title h1{
+    font-size: 24px;
+    line-height: 32px;
+  }
+  #contact .title h2{
+    font-size: 16pt;
+  }
+  .inner_heading h1{
+    font-size: 22px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .navbar-light {
+    text-align: center;
+  }
+}

@@ -1,0 +1,39 @@
+name = Shipping
+core = 7.x
+package = Core
+version = VERSION
+
+stylesheets[all][] = assets/css/bootstrap.min.css
+stylesheets[all][] = assets/css/icons.css
+stylesheets[all][] = assets/css/animate.css
+stylesheets[all][] = assets/css/slick.css
+stylesheets[all][] = assets/css/magnific-popup.css
+stylesheets[all][] = assets/css/metismenu.css
+stylesheets[all][] = assets/css/nice-select2.css
+stylesheets[all][] = assets/css/bootstrap.min.css
+stylesheets[all][] = assets/css/style.css
+stylesheets[all][] = assets/css/custom.css
+
+scripts[] = assets/js/jquery.min.js
+scripts[] = assets/js/modernizr.min.js
+scripts[] = assets/js/jquery.easing.js
+scripts[] = assets/js/popper.min.js
+scripts[] = assets/js/bootstrap.min.js
+scripts[] = assets/js/isotope.pkgd.min.js
+scripts[] = assets/js/imageload.min.js
+scripts[] = assets/js/scrollUp.min.js
+scripts[] = assets/js/slick.min.js
+scripts[] = assets/js/slick-animation.min.js
+scripts[] = assets/js/magnific-popup.min.js
+scripts[] = assets/js/wow.min.js
+scripts[] = assets/js/metismenu.js
+scripts[] = assets/js/nice-select2.js
+scripts[] = assets/js/active.js
+
+regions[main_content_front] = Main content front
+regions[translate] = Translate Japanese
+regions[bottom_main_content_front] = Bottom main content front
+regions[bottom_main_content_front_bottom] = Bottom main content front bottom
+regions[content] = Content
+regions[sidebar-right] = Sidebar right
+regions[footer_col_2] = Footer col 2
