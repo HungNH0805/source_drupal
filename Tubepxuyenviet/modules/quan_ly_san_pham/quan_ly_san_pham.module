@@ -1,0 +1,201 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+/**
+ * Implements hook_node_delete().
+ */
+/**
+ * Implements hook_menu().
+ */
+function quan_ly_san_pham_menu() {
+  $items['quan-ly-san-pham-new'] = array(
+    'title'=>'Quản lý menu',
+    'page callback'=>'drupal_get_form',
+    'page arguments' => array('quan_ly_san_pham'),
+    'access callback'=>'user_access',//phân quyền
+    'access arguments'=>array('quan_ly_san_pham'),//phân quyền
+    'type'=> MENU_CALLBACK
+  );
+  $items['sua-vi-tri-san-pham'] = array(
+    'title' => 'Sửa thông tin',
+    'delivery callback' => 'sua_vi_tri_san_pham',
+    'access callback' => 'TRUE',
+    'access arguments' => array('sua_vi_tri_san_pham'),
+    'type' => MENU_CALLBACK
+  );
+  return $items;
+}
+function sua_vi_tri_san_pham(){
+    $data_products = explode('{{}}',$_POST['data']);
+    $i =1;
+    foreach($data_products as $id => $item){
+        if ($id >=2){
+            $temp_arr[$i] = explode('({})',$item);
+        }
+        $i++;
+    }
+    $data_olds = $temp_arr;
+    foreach($temp_arr as $id => $item){
+      $data_olds[$id][2] = createCode($item[1]);
+    }
+    $data_news = node_load_multiple(array(), array('type' => 'blog_post'));
+    $data_count_new = count(node_load_multiple(array(), array('type' => 'product_display')));
+
+  //  foreach($data_news as $id => $item){
+  //      $query = entity_metadata_wrapper('node',$item);
+
+  //  }
+    $data_products_new = array();
+    $data_storage = array();
+    $i = 0;
+  foreach($data_news as $id => $item){
+    $data_compare[$id] = $item->field_code_product['und'][0]['value'];
+  }
+
+
+
+  foreach($data_olds as $id => $item){
+    if(!in_array($item[2], $data_compare)){
+      $lack_data[$id] = $item;
+    }
+  }
+
+
+  //
+  /**
+   * todo:Arrange product position
+   */
+  foreach ($data_news as $id_data_new => $data_new){
+      $query = entity_metadata_wrapper('node',$data_new);
+      foreach ($data_olds as $id => $data_old){
+          if ($data_old[2] == $data_new->field_code_product['und'][0]['value']){
+            $query->field_vi_tri->set($data_old[0]);
+             $check = $query->save();
+             if(!$check)
+             {
+                 $log = 'Lỗi không thêm hết được';
+             }
+             else{
+                 $log = 'Thêm xong hết';
+             }
+          }
+          $i++;
+      }
+  }
+
+
+  /**
+   * todo:update path alias
+   */
+  foreach ($data_news as $id_data_new => $data_new){
+    $query = entity_metadata_wrapper('node',$data_new);
+      foreach ($data_olds as $id => $data_old){
+          if ($data_old[2] == $data_new->field_code_product['und'][0]['value']){
+            $pos = '';
+            if(!empty($data_new->field_vi_tri)){
+              $pos = $data_new->field_vi_tri['und'][0]['value'];
+            }else{
+              $pos = "";
+            }
+            $path = createPath($data_new->title);
+            $path = $path . '-' . $pos . '.html';
+            $data_new->path = array('alias' => $path, 'pathauto' => FALSE);
+            $check = node_save($data_new);
+            if($check){
+              $log = 'thành công';
+            }else{
+              $log = 'thất bại';
+            }
+          }
+          $i++;
+      }
+  }
+  // $i=0;
+  // $d = 0;
+  // $dup_data = '';
+  // foreach ($data_olds as $id_data_new => $data_old) {
+  //     foreach ($data_news as $id => $data_new){
+  //         if ($data_new->field_code_product['und'][0]['value'] == $data_old[2]){
+  //           $i++;
+  //           if($i>2){
+  //             $d++;
+  //             node_delete($data_new->nid);
+  //             $i = 0;
+  //           }else{
+
+  //           }
+  //         }else{
+
+  //         }
+  //     }
+  // }
+
+
+
+
+  $td_lack_data = '';
+  // $lack_data = [];
+  foreach($lack_data as $id => $item){
+    $td_lack_data.= '<tr><td>'.$item[0].'</td>' . '<td>' . $item[1] . '</td></tr>';
+  }
+  $dem = 0;
+  $str = '';
+
+    $str= '<div class="container"><h2>Sản phẩm trùng: '.count($lack_data).'</h2><h4 class="height-full align-items-center d-flex mt-30 mb-0"><strong>Xuất excel table</strong></h4>
+<div class="du_lieu_sau_khi_them">
+    <table class="table table-bordered table-striped text-nowrap table_bep">
+        <tbody>
+        '. $td_lack_data. '
+        </tbody>
+    </table>
+</div>
+<a href="#" class="btn btn-success xuat_ex">Xuất excel</a></div>';
+
+    echo drupal_json_encode(array(
+    // 'log' => $log,
+    // 'data_news' => $data_news,
+    'lack_data' => $lack_data,
+    'data_olds' => $data_olds,
+    // 'data_olds' => $data_olds,
+    // 'data_storage' => $data_storage,
+    // 'code_name_olds' => $data_count_new,
+    // 'data_products' => $data_products,
+    'str' => $str
+    ));
+}
+function quan_ly_san_pham($form, &$form_state){
+  $new_datas = node_load_multiple(array(), array('type' => 'blog_post'));
+  foreach($new_datas as $item){
+    if(empty($item->field_code_product)){
+      $item->field_code_product['und'][0]['value'] = createCode($item->title);
+      node_save($item);
+    }
+  }
+  // $node = node_load(2929);
+  // node_delete(2929);
+  // $pos = '';
+  // if(!empty($node->field_vi_tri)){
+  //   $pos = $node->field_vi_tri['und'][0]['value'];
+  // }else{
+  //   $pos = "";
+  // }
+  // $path = createPath($node->title);
+  // $path = $path . '-' . $pos . '.html';
+  // $node->path = array('alias' => $path, 'pathauto' => FALSE);
+  // $node = node_submit($node);
+  // dpm($node);
+  // node_save($node);
+  return $form;
+}
+function quan_ly_san_pham_permission() {
+  return array(
+    'quan_ly_san_pham'=>array(
+    'title'=>'Quản lý sản phẩm',
+    ),
+    'sua_vi_tri_san_pham'=>array(
+    'title'=>'Sửa vị tr sản phẩm',
+    ),
+  );
+}
+
